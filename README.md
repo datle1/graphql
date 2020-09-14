@@ -10,7 +10,9 @@ POST http://gitlab.local/api/graphql
 Authorization: Bearer $TOKEN  
 Content-Type: application/json  
 #### Query body
+```json
 {"query":"query {group(fullPath:\"sdn\"){fullName  id path iterations{nodes{title}}}}"}
+```
 
 Result: OK
 ```json
@@ -32,7 +34,9 @@ Result: OK
 }
 ```
 #### Mutation body
+```json
 {"query":"mutation{updateIteration(input:{groupPath:\"gid://gitlab/Group/113\",id:\"gid://gitlab/Iteration/1\",title:\"Test\"}){ iteration{id title} errors}}"}
+```
 
 Result: fail due to error of gitlab 13.3.1-ee
 ```json
@@ -58,6 +62,6 @@ Result: fail due to error of gitlab 13.3.1-ee
 ```
 
 ## Refer: 
-https://docs.gitlab.com/ee/api/graphql/getting_started.html
+https://docs.gitlab.com/ee/api/graphql/getting_started.html   
 https://docs.gitlab.com/ee/api/graphql/reference/index.html#updateiterationpayload
 
