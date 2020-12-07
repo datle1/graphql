@@ -5,11 +5,11 @@ Study GraphQL on GitLab Enterprise Edition 13.3.1-ee
 https://gitlab.com/-/graphql-explorer
 
 ## GraphQL API:
-#### Header
+### Header
 POST http://gitlab.local/api/graphql  
 Authorization: Bearer $TOKEN  
 Content-Type: application/json  
-#### Query body
+### Query body
 ```json
 {"query":"query {group(fullPath:\"sdn\"){fullName  id path iterations{nodes{title}}}}"}
 ```
@@ -33,7 +33,8 @@ Result: OK
   }
 }
 ```
-#### Mutation body
+### Mutation body
+#### Example: Update iteration
 ```json
 {"query":"mutation{updateIteration(input:{groupPath:\"gid://gitlab/Group/113\",id:\"gid://gitlab/Iteration/1\",title:\"Test\"}){ iteration{id title} errors}}"}
 ```
@@ -58,6 +59,25 @@ Result: fail due to error of gitlab 13.3.1-ee
       ]
     }
   ]
+}
+```
+#### Example: Create iteration
+```json
+{"query":"mutation{createIteration(input:{groupPath:\"testgroup\",title:\"Test\",startDate:\"2020-12-06\",dueDate:\"2020-12-08\"}){ iteration{id title} errors}}"}
+```
+
+Result: OK
+```json
+{
+  "data": {
+    "createIteration": {
+      "iteration": {
+        "id": "gid://gitlab/Iteration/30",
+        "title": "Test1"
+      },
+      "errors": []
+    }
+  }
 }
 ```
 
